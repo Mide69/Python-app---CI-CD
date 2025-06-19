@@ -25,7 +25,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Login to Amazon ECR
+    - name: Login to Amazon AWS ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
@@ -41,6 +41,11 @@ jobs:
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v0.1.5
+
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
@@ -51,6 +56,4 @@ jobs:
           docker rm python-app || true
           docker pull ${{ steps.login-ecr.outputs.registry }}/tekktribe:latest
           docker run -d --name python-app -p 80:5000 ${{ steps.login-ecr.outputs.registry }}/tekktribe:latest
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
