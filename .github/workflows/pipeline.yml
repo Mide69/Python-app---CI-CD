@@ -52,8 +52,12 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${{ steps.login-ecr.outputs.registry }}
+          sudo netstat -tlnp | grep :80 | awk '{print $7}' | cut -d'/' -f1 | xargs -r sudo kill -9 || true
+          docker ps -a | grep :80 | awk '{print $1}' | xargs -r docker stop || true
+          docker ps -a | grep :80 | awk '{print $1}' | xargs -r docker rm || true
           docker stop python-app || true
           docker rm python-app || true
           docker pull ${{ steps.login-ecr.outputs.registry }}/tekktribe:latest
           docker run -d --name python-app -p 80:5000 ${{ steps.login-ecr.outputs.registry }}/tekktribe:latest
       
+          
