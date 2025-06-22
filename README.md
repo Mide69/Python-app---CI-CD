@@ -215,3 +215,10 @@ For support and questions:
 - Create an issue in the GitHub repository
 - Check troubleshooting section above
 - Review GitHub Actions logs for deployment issues
+- ![Screenshot (67)](https://github.com/user-attachments/assets/2ec09ce5-1bd1-4a31-878b-fb4d21865d4c)
+![Screenshot (66)](https://github.com/user-attachments/assets/675c0808-5df4-439c-922e-95e659fec3f1)
+![Screenshot (71)](https://github.com/user-attachments/assets/52ccd5d3-50b2-4b1c-9bdb-277f81d6a971)
+![Screenshot (69)](https://github.com/user-attachments/assets/fb84dba0-2a84-4227-9d87-fa30d64dd36f)
+![Screenshot (68)](https://github.com/user-attachments/assets/cdf5138a-dd62-4e29-86ff-f3b908063802)
+
+
